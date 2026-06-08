@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ComponenteController extends Controller
 {
+    public function index()
+    {
+        // Por ahora, para probar que levante la vista, retornamos el componente de Vue
+        // (Asegúrate de que 'Componentes/Index' coincida con la ruta de tu archivo Index.vue)
+        return Inertia::render('Componentes/Index');
+    }
     // Muestra el formulario para agregar el repuesto
     public function create(Request $request)
     {
