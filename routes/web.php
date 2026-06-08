@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ComponenteController;
+use App\Models\Proyecto; // Importamos el modelo para poder contar los equipos
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,8 +17,11 @@ Route::get('/', function () {
     ]);
 });
 
+// Modificamos esta ruta para enviar el conteo real a Dashboard.vue
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'totalProyectos' => Proyecto::count(), 
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // UN SOLO BLOQUE PROTEGIDO PARA TODO:

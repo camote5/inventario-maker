@@ -1,6 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+// Declaramos que este componente recibe la variable 'totalProyectos' desde web.php
+defineProps({
+    totalProyectos: Number,
+});
 </script>
 
 <template>
@@ -21,22 +26,20 @@ import { Head, Link } from '@inertiajs/vue3';
             </Link>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
             <div class="bg-white border border-gray-200 rounded p-4 shadow-sm">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Estado del Entorno</span>
-                <span class="text-2xl font-bold text-gray-800 block mt-1">Localhost</span>
-                <span class="text-xs text-green-600 font-semibold mt-1 inline-block">● Servidor Listo</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Proyectos Registrados</span>
+                <span class="text-2xl font-bold text-gray-800 block mt-1">{{ totalProyectos || 0 }}</span>
+                <span class="text-xs text-blue-600 font-semibold mt-1 inline-block">● Equipos en el inventario de esta cuenta</span>
             </div>
+            
             <div class="bg-white border border-gray-200 rounded p-4 shadow-sm">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Base de Datos</span>
-                <span class="text-2xl font-bold text-gray-800 block mt-1">SQLite</span>
-                <span class="text-xs text-blue-600 font-semibold mt-1 inline-block">Almacenamiento Local</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Estado del Servidor</span>
+                <span class="text-2xl font-bold text-green-600 block mt-1">En Línea</span>
+                <span class="text-xs text-gray-500 font-semibold mt-1 inline-block">✓ Sincronizado y operativo en la nube</span>
             </div>
-            <div class="bg-white border border-gray-200 rounded p-4 shadow-sm">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Motor de Renderizado</span>
-                <span class="text-2xl font-bold text-gray-800 block mt-1">Vue.js 3</span>
-                <span class="text-xs text-gray-500 font-semibold mt-1 inline-block">Inertia SPA</span>
-            </div>
+
         </div>
     </AuthenticatedLayout>
 </template>
